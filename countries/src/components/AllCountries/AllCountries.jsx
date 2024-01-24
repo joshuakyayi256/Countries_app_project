@@ -1,8 +1,10 @@
+
 import React, { useState, useEffect } from "react";
 import { apiURL } from "../Utility/api";
 
 import SearchInput from "../Search/SearchInput";
 import FilterCountry from "../FilterCountry/FilterCountry";
+
 
 import { Link } from "react-router-dom";
 
@@ -86,9 +88,20 @@ const AllCountries = () => {
 
         {
             countries?.map(country => (
-                <div className="country__card">
-                   <div className="country__img"></div>
+              <div className="country__card">
+
+                <div className="country__img">
+                   <img src={country.flags.png} alt="" />
                 </div>
+
+                <div className="country__data">
+                  <h3>{country.name.common}</h3>
+                  <h6> POPULATION: {country.population}</h6>
+                  <h6> REGION: {country.region}</h6>
+                  <h6> CAPITAL: {country.capital}</h6>
+                </div>
+
+              </div>
             ))
         }
         
