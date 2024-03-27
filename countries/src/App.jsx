@@ -1,23 +1,19 @@
-import "./app.css";
-import { Routes, Route } from "react-router-dom";
-import AllCountries from "./components/AllCountries/AllCountries";
-import CountryInfo from "./components/CountryInfo/CountryInfo";
+import { useContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import DetailsPage from './pages/DetailsPage';
+import { ThemeContext } from './context/ThemeContextProvider';
 
 function App() {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <>
-      <div className="header">
-        <div className="container">
-          <h5>Where in the world?</h5>
-        </div>
-      </div>
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<AllCountries />} />
-          <Route path="/country/:countryName" element={<CountryInfo />} />
-        </Routes>
-      </div>
-    </>
+    <div className={`min-h-screen ${theme === 'dark' ? 'dark' : ''}`}>
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/country/:alpha2Code" element={<DetailsPage />} />
+      </Routes>
+    </div>
   );
 }
 
